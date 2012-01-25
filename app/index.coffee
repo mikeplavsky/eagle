@@ -9,6 +9,7 @@ demo = ->
   Branch = require 'models/branch'
 
   delete_all = (model) ->
+
     model.deleteAll()
     model.saveLocal()
 
@@ -16,23 +17,13 @@ demo = ->
   delete_all Branch
 
   create_repo = (data) ->
-    
+
     repo = new Repo
       ref: data[0]
       branches: data[1]
       is_main: data[2]
 
     repo.save()
-
-  repos = [
-      ["git@github.com:GitEagle/Next.git", ["master"], true ]
-      ["git@github.com:WizardEagle/Next.git", ["master", "css-fix", "next-ui"], false]
-      ["git@github.com:HunterEagle/Next.git", ["master", "export-pdf", "fix-rotate"], false]
-      ["git@github.com:CaissaEagle/Next.git", ["master", "cr9678", "check-js"], false]
-      ["git@github.com:WarriorEagle/Next.git", ["master", "delay-splash", "perform-cr8765"], false]
-  ]
-
-  create_repo x for x in repos
 
   create_branch = (data)->
 
@@ -43,6 +34,14 @@ demo = ->
       js: data[3]
 
     branch.save()
+
+  repos = [
+      ["git@github.com:GitEagle/Next.git", ["master"], true ]
+      ["git@github.com:WizardEagle/Next.git", ["master", "css-fix", "next-ui"], false]
+      ["git@github.com:HunterEagle/Next.git", ["master", "export-pdf", "fix-rotate"], false]
+      ["git@github.com:CaissaEagle/Next.git", ["master", "cr9678", "check-js"], false]
+      ["git@github.com:WarriorEagle/Next.git", ["master", "delay-splash", "perform-cr8765"], false]
+  ]
 
   branches = [
     ["master", "git@github.com:GitEagle/Next.git", 3.5, 5.1]
@@ -56,6 +55,7 @@ demo = ->
     ["master", "git@github.com:WarriorEagle/Next.git", 4.9, 5.1]
   ]
 
+  create_repo x for x in repos
   create_branch x for x in branches
 
   Repo.saveLocal()
