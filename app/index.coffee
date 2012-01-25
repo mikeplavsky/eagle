@@ -62,6 +62,7 @@ demo = ->
   
 
 class App extends Spine.Controller
+
   constructor: ->
     super
     demo()
