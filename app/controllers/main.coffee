@@ -27,8 +27,4 @@ class MainRepo extends Spine.Controller
     
     @append new MainBranch
 
-    Repo.fetch()
-    Branch.fetch()
-
-
 module.exports = MainRepo
