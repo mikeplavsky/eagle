@@ -68,6 +68,7 @@ class App extends Spine.Controller
     demo()
 
     @main = new Main()
+    @append @main
 
 module.exports = App
     
