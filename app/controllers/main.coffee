@@ -4,6 +4,14 @@ List = require 'spine/lib/list'
 Repo = require 'models/repo'
 Branch = require 'models/branch'
 
+class Branches extends Spine.Controller
+
+  constructor: ->
+    super
+
+    branches = Branch.findAllByAttribute "repo", @el.data('item').ref
+    @append require( 'views/branch' )(branches)
+
 class Forks extends Spine.Controller
 
   className: "forks"
@@ -13,6 +21,12 @@ class Forks extends Spine.Controller
 
     forks = Repo.findAllByAttribute "is_main", false
     @append require('views/fork')(forks)
+
+    init_branches = (el)=>
+      @append new Branches el: el
+
+    init_branches el for el in @$( '.fork' )
+
                    
 class MainBranch extends Spine.Controller
 
